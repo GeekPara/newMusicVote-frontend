@@ -42,6 +42,7 @@ export default {
   },
   methods: {
     submit: async function () {
+      this.$emit('showSnackbar', "请稍候...", "info");
       let res = await this.tcb.callFunction({
         name: 'login-auth',
         data: {
@@ -58,7 +59,7 @@ export default {
         console.error(`Login Error: sid: ${this.g_sid} studyId: ${this.g_studyId} requestId: ${res.requestId}`);
         return this.$emit('showSnackbar', "验证失败，请检查填写是否有误", "error");
       }
-      this.$emit('showSnackbar', "验证成功", "success")
+      this.$emit('showSnackbar', "验证成功", "success");
       sessionStorage.setItem("sid", res.result.data.sid);
       sessionStorage.setItem("token", res.result.data.token);
       sessionStorage.setItem("stuName", res.result.data.name);

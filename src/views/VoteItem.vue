@@ -69,6 +69,9 @@
 export default {
   data: function () {
     return {
+      token: sessionStorage.getItem('token'),
+      sid: sessionStorage.getItem('sid'),
+      itemId: this.$route.params.id,
       items: [
         { musicId: '123', title: '233', artist: '333', addBy: '444' },
         { musicId: '1234', title: '233', artist: '333', addBy: '444' },
@@ -80,9 +83,9 @@ export default {
     let res = await this.tcb.callFunction({
       name: 'get-item',
       data: {
-        token: sessionStorage.getItem('token'),
-        sid: sessionStorage.getItem('sid'),
-        voteItem: this.$router.params.id
+        token: this.token,
+        sid: this.sid,
+        voteItem: this.itemId
       },
       parse: true
     })
@@ -92,9 +95,10 @@ export default {
     }
     if (!res.result.status) {
       console.error(`Login Error: sid: ${this.g_sid} requestId: ${res.requestId}`);
-      this.$router.push('/')
-      return this.$emit('showSnackbar', res.result.message, "error");
+      this.$emit('showSnackbar', res.result.message, "error");
+      return this.$router.push('/');
     }
+
   }
 }
 </script>

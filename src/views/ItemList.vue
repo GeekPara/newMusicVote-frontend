@@ -33,21 +33,18 @@
 export default {
   data: function () {
     return {
+      token:sessionStorage.getItem('token'),
+      sid:sessionStorage.getItem('sid'),
       selectedItem: 1,
-      items: [
-        //该数组内的内容务必在腾讯云续费后删除
-        { id: '123456', name: '测试1', end: '2021-3-20', isEnded: false },
-        { id: '123456', name: '测试2', end: '2021-3-19', isEnded: false },
-        { id: '123456', name: '测试3 已结束', end: '2021-3-17', isEnded: true },
-      ],
+      items: [],
     }
   },
   created: async function () {
     let res = await this.tcb.callFunction({
       name: 'get-list',
       data: {
-        token: sessionStorage.getItem('token'),
-        sid: sessionStorage.getItem('sid')
+        token: this.token,
+        sid: this.sid
       },
       parse: true
     })
@@ -56,14 +53,14 @@ export default {
       return this.$emit('showSnackbar', "服务器内部错误，请稍后再试", "error");
     }
     if (!res.result.status) {
-      console.error(`Login Error: sid: ${this.g_sid} requestId: ${res.requestId}`);
-      this.$router.push('/')
-      return this.$emit('showSnackbar', res.result.message, "error");
+      console.error(`Login Error: sid: ${this.sid} requestId: ${res.requestId}`);
+      this.$emit('showSnackbar', res.result.message, "error");
+      return this.$router.push('/');
     }
     if (res.result.data.length == 1) {
-      return this.$router.push(`/voteItem/${res.result.data[0].id}`)
+      return this.$router.push(`/voteItem/${res.result.data[0].id}`);
     }
-    this.items = res.result.data
+    this.items = res.result.data;
   }
 }
 </script>
