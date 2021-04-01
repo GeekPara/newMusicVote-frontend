@@ -106,7 +106,7 @@ export default {
         this.$emit('showSnackbar', res.result.message, "error");
         return this.$router.push('/');
       }
-      //if (res.result.data.isVoted) return this.$router.push(`/voteResult/${this.itemId}`);
+      if (res.result.data.isVoted) return this.$router.push(`/voteResult/${this.itemId}`);
       this.itemInfo.title = res.result.data.name;
       this.itemInfo.isEnded = res.result.data.isEnded;
       this.itemInfo.end = res.result.data.end;

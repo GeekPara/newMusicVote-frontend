@@ -52,11 +52,7 @@ export default {
       },
       buttonText: '添加',
       buttonCount: 0,
-      items: [
-        { musicId: '123', title: '233', artist: '333', addBy: '444', vote: 10 },
-        { musicId: '1234', title: '233', artist: '333', addBy: '444', vote: 20 },
-        { musicId: '12345', title: '233', artist: '333', addBy: '444', vote: 30 }
-      ],
+      items: [],
       addMusic: {
         title: null,
         artist: null
