@@ -15,7 +15,7 @@
             ></v-text-field>
             <v-text-field
               label="学号"
-              hint="当前的学号（高二上学期期中考后重新分配的）"
+              hint="旧学号（高二下学期期二调考前学号）"
               placeholder="19000000"
               v-model="g_studyId"
               filled
