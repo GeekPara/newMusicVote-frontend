@@ -17,7 +17,12 @@ const routes = [
   {
     path: '/voteItem/:id',
     name: 'VoteItem',
-    component: () => import(/* webpackChunkName: "voteIte," */ '../views/VoteItem.vue')
+    component: () => import(/* webpackChunkName: "voteItem," */ '../views/VoteItem.vue')
+  },
+  {
+    path: '/voteResult/:id',
+    name: 'VoteItem',
+    component: () => import(/* webpackChunkName: "voteResult," */ '../views/VoteResult.vue')
   },
   {
     path: '/about',

@@ -7,7 +7,7 @@
 
     <v-navigation-drawer v-model="drawer" app>
       <v-list-item class="px-2">
-        <v-img contain src="./assets/hzgeek-logo.png" @click="openHzgeek"></v-img>
+        <v-img contain class="my-2" src="./assets/hzgeek-logo.png" @click="openHzgeek"></v-img>
       </v-list-item>
 
       <v-divider></v-divider>
@@ -90,12 +90,6 @@
 export default {
   data: () => ({
     drawer: false,
-    links: [
-      'Dashboard',
-      'Messages',
-      'Profile',
-      'Updates',
-    ],
     theSnackbar: {
       isOpened: false,
       color: 'info',
@@ -124,11 +118,8 @@ export default {
       const that = this
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
       that.scrollTop = scrollTop
-      if (that.scrollTop > 60) {
-        that.btnFlag = true
-      } else {
-        that.btnFlag = false
-      }
+      if (that.scrollTop > 60) that.btnFlag = true
+      else that.btnFlag = false
     },
   },
   mounted: function () {
